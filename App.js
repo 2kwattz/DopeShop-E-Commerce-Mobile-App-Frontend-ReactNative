@@ -28,6 +28,12 @@ import { Platform } from 'react-native';
 import CustomDrawerContent from './components/elements/drawer';
 
 
+// function togglePickupBtnPress(){
+//         setBtnIsPressed(!BtnIsPressed)
+//         console.log(BtnIsPressed)
+// };
+
+
 const Drawer = createDrawerNavigator()
 
 // StyleSheets
@@ -50,20 +56,29 @@ const truckImage = require('./assets/popup/truck.png')
 const pickupImage = require('./assets/popup/pickup.png')
 // import { invert } from 'react-native-image-filter-kit'
 
-function toggleBottomSheet() {
-  setIsBottomSheetOpen(!isBottomSheetOpen)
+// function toggleBottomSheet() {
+//   setIsBottomSheetOpen(!isBottomSheetOpen)
 
 
-}
+// }
 
 
 export default function App() {
+
+
+  
 
   const [Feedback, editFeedback] = useState('')
   const [activeTab, setActiveTab] = useState('Form');
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
+  const [BtnIsPressed, setBtnIsPressed] = useState(false);
+
+  function togglePickupBtnPress() {
+    setBtnIsPressed(!BtnIsPressed)
+    console.log(BtnIsPressed)
+  };
 
   const toggleBottomSheet = () => {
     return setIsBottomSheetOpen(!isBottomSheetOpen);
@@ -74,10 +89,6 @@ export default function App() {
   // const handleToggleDrawer = () => {
   //     setIsDrawerVisible(!isDrawerVisible);
   // };
-
-
-
-
 
   const renderTab = () => {
     switch (activeTab) {
@@ -98,16 +109,153 @@ export default function App() {
 
       <GestureHandlerRootView style={[global.wrapper]}>
 
-        <Header />
-  
-        <Form toggleBottomSheet={toggleBottomSheet} />
-       
-        <Navigation />
         
+
+        <Header />
+
+        <Form toggleBottomSheet={toggleBottomSheet} BtnIsPressed={BtnIsPressed} togglePickupBtnPress={togglePickupBtnPress} />
+
+        <Navigation />
+{/* 
+        <ScrollView horizontal={true} contentContainerStyle={global.contentContainerStyle} showsHorizontalScrollIndicator={false}>
+
+
+
+                                    <View style={[global.CalenderItem, global.CalenderActive]}>
+                                        <Text style={global.CalenderHeadingActive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextActive}>
+                                            10
+                                        </Text>
+
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderActive]}>
+                                        <Text style={global.CalenderHeadingActive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextActive}>
+                                            11
+                                        </Text>
+
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderActive]}>
+                                        <Text style={global.CalenderHeadingActive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextActive}>
+                                            12
+                                        </Text>
+
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderActive]}>
+                                        <Text style={global.CalenderHeadingActive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextActive}>
+                                            13
+                                        </Text>
+
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderActive]}>
+                                        <Text style={global.CalenderHeadingActive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextActive}>
+                                            14
+                                        </Text>
+
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderActive]}>
+                                        <Text style={global.CalenderHeadingActive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextActive}>
+                                            15
+                                        </Text>
+
+                                    </View>
+
+                                    <View style={[global.CalenderItem, global.CalenderActive]}>
+                                        <Text style={global.CalenderHeadingActive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextActive}>
+                                            16
+                                        </Text>
+
+                                    </View>
+
+                                    <View style={[global.CalenderItem, global.CalenderGeneral]}>
+                                        <Text style={global.CalenderHeading}>
+                                            Thu
+                                        </Text>
+
+                                        <Text style={global.CalenderText}>
+                                            17
+                                        </Text>
+                                    </View>
+
+                                    <View style={[global.CalenderItem, global.CalenderGeneral]}>
+                                        <Text style={global.CalenderHeading}>
+                                            Fri
+                                        </Text>
+
+                                        <Text style={global.CalenderText}>
+                                            12
+                                        </Text>
+                                    </View>
+
+                                    <View style={[global.CalenderItem, global.CalenderInactive]}>
+                                        <Text style={global.CalenderHeadingInactive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextInactive}>
+                                            10
+                                        </Text>
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderInactive]}>
+                                        <Text style={global.CalenderHeadingInactive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextInactive}>
+                                            10
+                                        </Text>
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderInactive]}>
+                                        <Text style={global.CalenderHeadingInactive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextInactive}>
+                                            10
+                                        </Text>
+                                    </View>
+                                    <View style={[global.CalenderItem, global.CalenderInactive]}>
+                                        <Text style={global.CalenderHeadingInactive}>
+                                            Wed
+                                        </Text>
+
+                                        <Text style={global.CalenderTextInactive}>
+                                            10
+                                        </Text>
+                                    </View>
+
+
+                                </ScrollView> */}
 
         {isBottomSheetOpen && <View style={global.overlay} />}
         {
-          isBottomSheetOpen ? <BottomSheetComponent style={[global.boxShadow, {backgroundColor: 'black'}]} isBottomSheetOpen={isBottomSheetOpen} toggleBottomSheet={toggleBottomSheet}/> : null
+          isBottomSheetOpen ? <BottomSheetComponent style={[global.boxShadow, { backgroundColor: 'black' }]} isBottomSheetOpen={isBottomSheetOpen} toggleBottomSheet={toggleBottomSheet} BtnIsPressed={BtnIsPressed} togglePickupBtnPress={togglePickupBtnPress} /> : null
         }
 
 
@@ -321,16 +469,16 @@ const global = StyleSheet.create({
     color: Colors.greyPrimary,
     textAlign: 'center',
   },
-  boxShadow:{
+  boxShadow: {
 
-    backgroundColor: Colors.whitePrimary,
+    backgroundColor: 'white',
     elevation: 12,
     shadowOpacity: 1,
     shadowColor: 'black',
     shadowColor: '#243b6b',
     shadowOpacity: 1,
-    height: '100%',
-    // backgroundColor: 'black',
+    // height: '100%',
+    backgroundColor: 'black',
     // background color must be set
 
   },
@@ -386,7 +534,7 @@ const global = StyleSheet.create({
     color: Colors.whitePrimary,
   },
 
-  
+
 
 
   overlay: {
@@ -396,7 +544,7 @@ const global = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-     // Transparent black color rgba(0, 0, 0, 0.5)
+    // Transparent black color rgba(0, 0, 0, 0.5)
     zIndex: 0, // Ensure the overlay is above other content
   },
 

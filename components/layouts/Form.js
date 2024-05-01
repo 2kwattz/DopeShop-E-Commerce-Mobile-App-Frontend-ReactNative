@@ -22,7 +22,11 @@ const arrowSquareRight = require('../../assets/Order/arrow-square-right.png')
 
 const calenderImage = require('../../assets/Order/calendar-tick.png')
 
-const Form = ({toggleBottomSheet}) => {
+const Form = ({toggleBottomSheet, togglePickupBtnPress, BtnIsPressed}) => {
+
+    console.log(`From Form.js ${BtnIsPressed}`)
+
+    let DeliveryMethod = BtnIsPressed?"Pickup":"Delivery"
     return (
         <React.Fragment>
                <View style={{elevation: 50}}>
@@ -99,7 +103,7 @@ const Form = ({toggleBottomSheet}) => {
                 <View style={[FormStyles.orderDetails,{margin: 5, marginLeft: 10}]}>
                     <TouchableOpacity style={FormStyles.orderDetailsTextContainer} onPress={toggleBottomSheet}>
                         <Text style={FormStyles.orderDetailsTextKey}> Delivery Method </Text>
-                        <Text style={FormStyles.orderDetailsTextValue}> Pickup <Image source={editImage}/> </Text>
+                        <Text style={FormStyles.orderDetailsTextValue}> {DeliveryMethod} <Image source={editImage}/> </Text>
                     </TouchableOpacity>
                     
                 </View>
